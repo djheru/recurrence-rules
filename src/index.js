@@ -183,10 +183,7 @@ function yearlyRRule(options) {
     const setPos = getSetPos(startDate, dayArray);
     const byDay = dayArray.map(d => `${setPos}${d}`).join(',');
     ruleArray.push(`BYDAY=${byDay}`);
-  } else {
-    ruleArray.push(``);
   }
-
   return `RRULE:${ruleArray.join(';')};`;
 }
 
