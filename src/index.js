@@ -1,15 +1,5 @@
 import moment from 'moment';
-import {
-  ords,
-  defaultOptions,
-  endDateString,
-  endTypes,
-  repeatByTypes,
-  repeatTypes,
-  weekDays,
-  getSetPos,
-  parseVariations
-} from './utils';
+import { ords, defaultOptions, endDateString, endTypes, repeatByTypes, repeatTypes, weekDays, getSetPos, parseVariations } from './utils';
 
 const REPEAT_TYPES = repeatTypes;
 export { REPEAT_TYPES };
@@ -28,7 +18,7 @@ function dailyRRule(options) {
   const ruleArray = [];
   ruleArray.push('FREQ=DAILY');
 
-  const int = (!!interval) ? `INTERVAL=${parseInt(interval, 10)}` : `INTERVAL=1`;
+  const int = !!interval ? `INTERVAL=${parseInt(interval, 10)}` : `INTERVAL=1`;
   ruleArray.push(int);
   if (!!count) {
     ruleArray.push(`COUNT=${parseInt(count, 10)}`);
@@ -42,8 +32,7 @@ export function parseDaily(inputOptions) {
   const { interval, startDate, endDate, count } = options;
   let stringArray = ['Every'];
 
-  const intervalString = (!!interval && parseInt(interval, 10) > 1) ?
-    `${interval} ${period}s` : period;
+  const intervalString = !!interval && parseInt(interval, 10) > 1 ? `${interval} ${period}s` : period;
   stringArray.push(intervalString);
 
   const startString = moment(startDate).format('MM/DD/YYYY');
@@ -55,8 +44,8 @@ export function parseDaily(inputOptions) {
   const rrule = dailyRRule(options);
   return {
     toString,
-    rrule
-  }
+    rrule,
+  };
 }
 
 function weeklyRRule(options) {
@@ -64,15 +53,19 @@ function weeklyRRule(options) {
   const ruleArray = [];
 
   ruleArray.push('FREQ=WEEKLY');
-  const int = (!!interval) ? `INTERVAL=${parseInt(interval, 10)}` : `INTERVAL=1`;
+  const int = !!interval ? `INTERVAL=${parseInt(interval, 10)}` : `INTERVAL=1`;
   ruleArray.push(int);
 
   if (!!count) {
     ruleArray.push(`COUNT=${parseInt(count, 10)}`);
   }
 
-  const days = (dayArray.length > 0) ?
-    dayArray.join(',') : moment(startDate).format('dd').toUpperCase();
+  const days =
+    dayArray.length > 0
+      ? dayArray.join(',')
+      : moment(startDate)
+          .format('dd')
+          .toUpperCase();
   ruleArray.push(`BYDAY=${days}`);
 
   return `RRULE:${ruleArray.join(';')};`;
@@ -84,8 +77,7 @@ export function parseWeekly(inputOptions) {
   const { interval, startDate, endDate, count, dayArray } = options;
   let stringArray = ['Every'];
 
-  const intervalString = (!!interval && parseInt(interval, 10) > 1) ?
-    `${interval} ${period}s` : period;
+  const intervalString = !!interval && parseInt(interval, 10) > 1 ? `${interval} ${period}s` : period;
   stringArray.push(intervalString);
 
   if (dayArray.length > 0) {
@@ -109,8 +101,8 @@ export function parseWeekly(inputOptions) {
   const rrule = weeklyRRule(options);
   return {
     toString,
-    rrule
-  }
+    rrule,
+  };
 }
 
 function monthlyRRule(options) {
@@ -118,7 +110,7 @@ function monthlyRRule(options) {
   const ruleArray = [];
 
   ruleArray.push('FREQ=MONTHLY');
-  const int = (!!interval) ? `INTERVAL=${parseInt(interval, 10)}` : `INTERVAL=1`;
+  const int = !!interval ? `INTERVAL=${parseInt(interval, 10)}` : `INTERVAL=1`;
   ruleArray.push(int);
 
   if (!!count) {
@@ -130,7 +122,7 @@ function monthlyRRule(options) {
     const byDay = dayArray.map(d => `${setPos}${d}`).join(',');
     ruleArray.push(`BYDAY=${byDay}`);
   } else {
-    ruleArray.push(`BYMONTHDAY=${moment(startDate).format('DD')}`)
+    ruleArray.push(`BYMONTHDAY=${moment(startDate).format('DD')}`);
   }
 
   return `RRULE:${ruleArray.join(';')};`;
@@ -142,8 +134,7 @@ export function parseMonthly(inputOptions) {
   const { interval, startDate, endDate, count, dayArray } = options;
   let stringArray = ['Every'];
 
-  const intervalString = (!!interval && parseInt(interval, 10) > 1) ?
-    `${interval} ${period}s` : period;
+  const intervalString = !!interval && parseInt(interval, 10) > 1 ? `${interval} ${period}s` : period;
   stringArray.push(intervalString);
 
   stringArray.push('on the');
@@ -153,10 +144,8 @@ export function parseMonthly(inputOptions) {
     onThe = `${monthDay}${ords(parseInt(monthDay, 10))} day of the month`;
   } else {
     const setPos = getSetPos(startDate, dayArray);
-    const ord = (setPos === -1) ?
-      'last' : `${setPos}${ords(parseInt(setPos, 10))}`;
-    const days = dayArray
-      .map(day => weekDays[day]);
+    const ord = setPos === -1 ? 'last' : `${setPos}${ords(parseInt(setPos, 10))}`;
+    const days = dayArray.map(day => weekDays[day]);
     if (dayArray.length > 1) {
       days.splice(-1, 0, 'and');
     }
@@ -167,7 +156,6 @@ export function parseMonthly(inputOptions) {
   const startString = moment(startDate).format('MM/DD/YYYY');
   stringArray.push(`starting ${startString}`);
 
-
   stringArray.push(endDateString(endDate, count));
 
   const toString = stringArray.join(' ');
@@ -175,8 +163,8 @@ export function parseMonthly(inputOptions) {
 
   return {
     toString,
-    rrule
-  }
+    rrule,
+  };
 }
 
 function yearlyRRule(options) {
@@ -184,7 +172,7 @@ function yearlyRRule(options) {
   const ruleArray = [];
 
   ruleArray.push('FREQ=YEARLY');
-  const int = (!!interval) ? `INTERVAL=${parseInt(interval, 10)}` : `INTERVAL=1`;
+  const int = !!interval ? `INTERVAL=${parseInt(interval, 10)}` : `INTERVAL=1`;
   ruleArray.push(int);
 
   if (!!count) {
@@ -208,8 +196,7 @@ export function parseYearly(inputOptions) {
   const { interval, startDate, endDate, count, dayArray } = options;
   let stringArray = ['Every'];
 
-  const intervalString = (!!interval && parseInt(interval, 10) > 1) ?
-    `${interval} ${period}s` : period;
+  const intervalString = !!interval && parseInt(interval, 10) > 1 ? `${interval} ${period}s` : period;
   stringArray.push(intervalString);
 
   stringArray.push('on the');
@@ -220,10 +207,8 @@ export function parseYearly(inputOptions) {
     onThe = `${monthDay}${ords(parseInt(monthDay, 10))} day of ${theMonth}`;
   } else {
     const setPos = getSetPos(startDate, dayArray);
-    const ord = (setPos === -1) ?
-      'last' : `${setPos}${ords(parseInt(setPos, 10))}`;
-    const days = dayArray
-      .map(day => weekDays[day]);
+    const ord = setPos === -1 ? 'last' : `${setPos}${ords(parseInt(setPos, 10))}`;
+    const days = dayArray.map(day => weekDays[day]);
     days.splice(-1, 0, 'and');
     onThe = `${ord} ${days.join(' ')} of ${theMonth}`;
   }
@@ -238,8 +223,8 @@ export function parseYearly(inputOptions) {
   const rrule = yearlyRRule(options);
   return {
     toString,
-    rrule
-  }
+    rrule,
+  };
 }
 
 export default function rrule(rruleOptions) {

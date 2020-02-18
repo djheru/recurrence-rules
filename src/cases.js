@@ -3,83 +3,93 @@ import { endTypes, repeatByTypes, repeatTypes } from './utils';
 
 const cases = {
   parseDaily: [
-    { //
+    {
+      //
       repeatType: repeatTypes.DAILY,
       interval: 1,
       dayArray: [],
       count: 0,
       startDate: '2017-10-19',
-      endDate: '2018-09-10'
+      endDate: '2018-09-10',
     },
-    { //
+    {
+      //
       repeatType: repeatTypes.DAILY,
       interval: 3,
       dayArray: [],
       count: 20,
       startDate: '2017-10-19',
-      endDate: ''
-    }
+      endDate: '',
+    },
   ],
   parseWeekly: [
-    { //
+    {
+      //
       repeatType: repeatTypes.WEEKLY,
       interval: 1,
       dayArray: [],
       count: 0,
       startDate: '2017-10-19',
-      endDate: '2018-09-10'
+      endDate: '2018-09-10',
     },
-    { //
+    {
+      //
       repeatType: repeatTypes.WEEKLY,
       interval: 3,
       dayArray: [],
       count: 20,
       startDate: '2017-10-19',
-      endDate: ''
+      endDate: '',
     },
-    { //
+    {
+      //
       repeatType: repeatTypes.WEEKLY,
       interval: 2,
       dayArray: ['SU', 'MO', 'TH'],
       count: 0,
       startDate: '2017-10-19',
-      endDate: ''
-    }
+      endDate: '',
+    },
   ],
   parseMonthly: [
-    { //
+    {
+      //
       repeatType: repeatTypes.MONTHLY,
       interval: 1,
       dayArray: [],
       count: 0,
       startDate: '2017-10-19',
-      endDate: '2018-09-10'
+      endDate: '2018-09-10',
     },
-    { //
+    {
+      //
       repeatType: repeatTypes.MONTHLY,
       interval: 3,
       dayArray: [],
       count: 20,
       startDate: '2017-10-10',
-      endDate: ''
+      endDate: '',
     },
-    { //
+    {
+      //
       repeatType: repeatTypes.MONTHLY,
       interval: 1,
       dayArray: ['SU', 'MO', 'TH'],
       count: 0,
       startDate: '2017-10-19',
-      endDate: ''
+      endDate: '',
     },
-    { //
+    {
+      //
       repeatType: repeatTypes.MONTHLY,
       interval: 2,
       dayArray: ['SU', 'MO', 'TH'],
       count: 0,
       startDate: '2017-10-29',
-      endDate: ''
+      endDate: '',
     },
-    { //
+    {
+      //
       repeatType: repeatTypes.MONTHLY,
       repeatByType: repeatByTypes.DOM,
       endType: endTypes.COUNT,
@@ -87,9 +97,10 @@ const cases = {
       dayArray: ['SU', 'MO', 'TH'],
       count: 10,
       startDate: '2018-10-19',
-      endDate: '2019-09-10'
+      endDate: '2019-09-10',
     },
-    { //
+    {
+      //
       repeatType: repeatTypes.MONTHLY,
       repeatByType: repeatByTypes.DOW,
       endType: endTypes.DATE,
@@ -97,54 +108,61 @@ const cases = {
       dayArray: ['SU', 'MO', 'TH'],
       count: 10,
       startDate: '2017-10-19',
-      endDate: '2018-09-10'
-    }
+      endDate: '2018-09-10',
+    },
   ],
   parseYearly: [
-    { //
+    {
+      //
       repeatType: repeatTypes.YEARLY,
       interval: 1,
       dayArray: [],
       count: 0,
       startDate: '2017-10-19',
-      endDate: '2027-10-19'
+      endDate: '2027-10-19',
     },
-    { //
+    {
+      //
       repeatType: repeatTypes.YEARLY,
       interval: 2,
       dayArray: [],
       count: 20,
       startDate: '2017-10-19',
-      endDate: ''
+      endDate: '',
     },
-    { //
+    {
+      //
       repeatType: repeatTypes.YEARLY,
       interval: 2,
       dayArray: ['SU', 'MO', 'TH'],
       count: 0,
       startDate: '2017-10-19',
-      endDate: ''
+      endDate: '',
     },
-    { //
+    {
+      //
       repeatType: repeatTypes.YEARLY,
       interval: 2,
       dayArray: ['SU', 'MO', 'TH'],
       count: 0,
       startDate: '2017-10-29',
-      endDate: ''
-    }
-  ]
+      endDate: '',
+    },
+  ],
 };
 
 const main = () => {
-  /*
-    console.log(cases.parseDaily.map(parseDaily));
-    console.log(cases.parseWeekly.map(parseWeekly));
-    console.log(cases.parseMonthly.map(parseMonthly));
-    console.log(cases.parseYearly.map(parseYearly));
-  */
-  const allCases = cases.parseDaily.concat(cases.parseWeekly, cases.parseMonthly, cases.parseYearly);
-  console.log(allCases.map(rrule));
+  console.log('Daily Recurrence');
+  console.log(cases.parseDaily.map(rrule));
+
+  console.log('Weekly Recurrence');
+  console.log(cases.parseWeekly.map(rrule));
+
+  console.log('Monthly Recurrence');
+  console.log(cases.parseMonthly.map(rrule));
+
+  console.log('Yearly Recurrence');
+  console.log(cases.parseYearly.map(rrule));
 };
 
 main();

@@ -2,8 +2,11 @@
   "name": "recurrence-rules",
   "version": "1.0.15",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
+    "build": "npm run clean && npm run build:commonjs",
+    "build:commonjs": "babel src --out-dir lib",
+    "clean": "rimraf lib",
     "test": "node ./lib/cases.js"
   },
   "author": "",

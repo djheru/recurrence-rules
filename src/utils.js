@@ -1,7 +1,6 @@
 import moment from 'moment';
 
-export const ords = (n) => (n < 11 || n > 13) ?
-  ['st', 'nd', 'rd', 'th'][Math.min((n - 1) % 10, 3)] : 'th';
+export const ords = n => (n < 11 || n > 13 ? ['st', 'nd', 'rd', 'th'][Math.min((n - 1) % 10, 3)] : 'th');
 
 export const defaultOptions = {
   repeatType: '',
@@ -11,19 +10,19 @@ export const defaultOptions = {
   count: 0, // e.g. occurs 10 times
   startDate: '',
   endDate: '',
-  endType: ''
+  endType: '',
 };
 
 export const repeatTypes = {
   DAILY: 'DAILY',
   WEEKLY: 'WEEKLY',
   MONTHLY: 'MONTHLY',
-  YEARLY: 'YEARLY'
+  YEARLY: 'YEARLY',
 };
 
 export const repeatByTypes = {
   DOM: 'DOM',
-  DOW: 'DOW'
+  DOW: 'DOW',
 };
 
 export const weekDays = {
@@ -33,7 +32,7 @@ export const weekDays = {
   WE: 'Wednesday',
   TH: 'Thursday',
   FR: 'Friday',
-  SA: 'Saturday'
+  SA: 'Saturday',
 };
 
 export const endTypes = { NEVER: 'never', COUNT: 'count', DATE: 'date' };
@@ -58,7 +57,9 @@ export function parseVariations(options) {
 }
 
 export function getSetPos(startDate, dayArray) {
-  const startDay = moment(startDate).format('dd').toUpperCase();
+  const startDay = moment(startDate)
+    .format('dd')
+    .toUpperCase();
   const startDayIndex = Object.keys(weekDays).indexOf(startDay);
   const byDayFirstIndex = Object.keys(weekDays).indexOf(dayArray[0]);
   const dayDelta = byDayFirstIndex - startDayIndex;
@@ -66,7 +67,7 @@ export function getSetPos(startDate, dayArray) {
 
   const startDateObj = moment(actualFirstDay, 'YYYY-MM-DD');
   const dayOfMonth = parseInt(startDateObj.format('D'), 10);
-  return (Math.ceil(dayOfMonth / 7) <= 4) ? Math.ceil(dayOfMonth / 7) : -1;
+  return Math.ceil(dayOfMonth / 7) <= 4 ? Math.ceil(dayOfMonth / 7) : -1;
 }
 
 export function endDateString(endDate, count) {
