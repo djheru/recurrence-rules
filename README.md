@@ -235,7 +235,6 @@ Weekly Recurrence
   }
 ]
 Monthly Recurrence
-Deprecation warning: moment().add(period, number) is deprecated. Please use moment().add(number, period). See http://momentjs.com/guides/#/warnings/add-inverted-param/ for more info.
 [
   {
     toString: 'Every month on the 19th day of the month starting 10/19/2017 ',

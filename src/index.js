@@ -126,7 +126,7 @@ function monthlyRRule(options) {
     const startDateObj = moment(startDate);
     const startDOM = startDateObj.date();
     const lastDOM = moment()
-      .add('months', 1)
+      .add(1, 'months')
       .date(0)
       .date();
 
@@ -156,7 +156,7 @@ export function parseMonthly(inputOptions) {
     const monthDay = startDateObj.format('D');
     const startDOM = startDateObj.date();
     const lastDOM = moment()
-      .add('months', 1)
+      .add(1, 'months')
       .date(0)
       .date();
     const isRecalculationNeeded = [31, 30, 29].includes(startDOM) && lastDOM - startDOM <= 2;
