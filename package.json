@@ -1,7 +1,7 @@
 {
   "name": "recurrence-rules",
   "version": "1.2.0",
-  "description": "",
+  "description": "Recurrence Rules Generator",
   "main": "lib/index.js",
   "scripts": {
     "build": "npm run clean && npm run build:commonjs",
@@ -23,5 +23,9 @@
   "np": {
     "yarn": false,
     "contents": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com:djheru/recurrence-rules.git"
   }
 }
