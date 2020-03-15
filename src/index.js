@@ -68,7 +68,7 @@ function weeklyRRule(options) {
           .toUpperCase();
   ruleArray.push(`BYDAY=${days}`);
 
-  return `RRULE:${ruleArray.join(';')};`;
+  return `RRULE:${ruleArray.join(';')}`;
 }
 
 export function parseWeekly(inputOptions) {
@@ -211,7 +211,7 @@ function yearlyRRule(options) {
     const byDay = dayArray.map(d => `${setPos}${d}`).join(',');
     ruleArray.push(`BYDAY=${byDay}`);
   }
-  return `RRULE:${ruleArray.join(';')};`;
+  return `RRULE:${ruleArray.join(';')}`;
 }
 
 export function parseYearly(inputOptions) {

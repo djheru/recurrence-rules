@@ -223,15 +223,15 @@ Weekly Recurrence
 [
   {
     toString: 'Every week starting 10/19/2017 ',
-    rrule: 'RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=TH;'
+    rrule: 'RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=TH'
   },
   {
     toString: 'Every 3 weeks starting 10/19/2017 ',
-    rrule: 'RRULE:FREQ=WEEKLY;INTERVAL=3;BYDAY=TH;'
+    rrule: 'RRULE:FREQ=WEEKLY;INTERVAL=3;BYDAY=TH'
   },
   {
     toString: 'Every 2 weeks on Sunday Monday and Thursday starting 10/19/2017 ',
-    rrule: 'RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=SU,MO,TH;'
+    rrule: 'RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=SU,MO,TH'
   }
 ]
 Monthly Recurrence
@@ -278,19 +278,19 @@ Yearly Recurrence
 [
   {
     toString: 'Every year on the 19th day of Oct starting 10/19/2017 ',
-    rrule: 'RRULE:FREQ=YEARLY;INTERVAL=1;'
+    rrule: 'RRULE:FREQ=YEARLY;INTERVAL=1'
   },
   {
     toString: 'Every 2 years on the 19th day of Oct starting 10/19/2017 ',
-    rrule: 'RRULE:FREQ=YEARLY;INTERVAL=2;'
+    rrule: 'RRULE:FREQ=YEARLY;INTERVAL=2'
   },
   {
     toString: 'Every 2 years on the 3rd Sunday Monday and Thursday of Oct starting 10/19/2017 ',
-    rrule: 'RRULE:FREQ=YEARLY;INTERVAL=2;BYDAY=3SU,3MO,3TH;'
+    rrule: 'RRULE:FREQ=YEARLY;INTERVAL=2;BYDAY=3SU,3MO,3TH'
   },
   {
     toString: 'Every 2 years on the last Sunday Monday and Thursday of Oct starting 10/29/2017 ',
-    rrule: 'RRULE:FREQ=YEARLY;INTERVAL=2;BYDAY=-1SU,-1MO,-1TH;'
+    rrule: 'RRULE:FREQ=YEARLY;INTERVAL=2;BYDAY=-1SU,-1MO,-1TH'
   }
 ]
 ```
