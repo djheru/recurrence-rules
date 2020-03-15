@@ -122,7 +122,16 @@ function monthlyRRule(options) {
     const byDay = dayArray.map(d => `${setPos}${d}`).join(',');
     ruleArray.push(`BYDAY=${byDay}`);
   } else {
-    ruleArray.push(`BYMONTHDAY=${moment(startDate).format('DD')}`);
+    // use the negative offset for the BYMONTHDAY if startDate is 28 or above
+    const startDateObj = moment(startDate);
+    const startDOM = startDateObj.date();
+    const lastDOM = moment()
+      .add('months', 1)
+      .date(0);
+    const isRecalculationNeeded = [31, 30, 29].includes(startDOM) && lastDOM - startDOM > 2;
+    const byMonthDay = isRecalculationNeeded ? startDOM - lastDOM - 1 : startDOM;
+
+    ruleArray.push(`BYMONTHDAY=${byMonthDay}`);
   }
 
   return `RRULE:${ruleArray.join(';')};`;
