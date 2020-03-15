@@ -110,6 +110,39 @@ const cases = {
       startDate: '2017-10-19',
       endDate: '2018-09-10',
     },
+    {
+      //
+      repeatType: repeatTypes.MONTHLY,
+      repeatByType: repeatByTypes.DOW,
+      endType: endTypes.DATE,
+      interval: 1,
+      dayArray: ['FR'],
+      count: 10,
+      startDate: '2017-10-30',
+      endDate: '2018-09-10',
+    },
+    {
+      //
+      repeatType: repeatTypes.MONTHLY,
+      repeatByType: repeatByTypes.DOM,
+      endType: endTypes.DATE,
+      interval: 1,
+      dayArray: [],
+      count: 0,
+      startDate: '2018-10-30',
+      endDate: '2022-09-10',
+    },
+    {
+      //
+      repeatType: repeatTypes.MONTHLY,
+      repeatByType: repeatByTypes.DOM,
+      endType: endTypes.DATE,
+      interval: 1,
+      dayArray: [],
+      count: 0,
+      startDate: '2018-10-31',
+      endDate: '2022-11-10',
+    },
   ],
   parseYearly: [
     {

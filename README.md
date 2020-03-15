@@ -113,6 +113,17 @@ const cases = {
       startDate: '2017-10-19',
       endDate: '2018-09-10',
     },
+    {
+      //
+      repeatType: repeatTypes.MONTHLY,
+      repeatByType: repeatByTypes.DOW,
+      endType: endTypes.DATE,
+      interval: 1,
+      dayArray: ['FR'],
+      count: 10,
+      startDate: '2017-10-30',
+      endDate: '2018-09-10',
+    },
   ],
   parseYearly: [
     {
@@ -201,7 +212,6 @@ Weekly Recurrence
   }
 ]
 Monthly Recurrence
-
 [
   {
     toString: 'Every month on the 19th day of the month starting 10/19/2017 ',
@@ -226,6 +236,10 @@ Monthly Recurrence
   {
     toString: 'Every month on the 3rd Sunday Monday and Thursday of the month starting 10/19/2017 and ending on 09/10/2018',
     rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=3SU,3MO,3TH;'
+  },
+  {
+    toString: 'Every month on the last Friday of the month starting 10/30/2017 and ending on 09/10/2018',
+    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=-1FR;'
   }
 ]
 Yearly Recurrence

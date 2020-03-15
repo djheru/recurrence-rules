@@ -127,14 +127,16 @@ function monthlyRRule(options) {
     const startDOM = startDateObj.date();
     const lastDOM = moment()
       .add('months', 1)
-      .date(0);
-    const isRecalculationNeeded = [31, 30, 29].includes(startDOM) && lastDOM - startDOM > 2;
+      .date(0)
+      .date();
+
+    const isRecalculationNeeded = [31, 30, 29].includes(startDOM) && lastDOM - startDOM <= 2;
     const byMonthDay = isRecalculationNeeded ? startDOM - lastDOM - 1 : startDOM;
 
     ruleArray.push(`BYMONTHDAY=${byMonthDay}`);
   }
 
-  return `RRULE:${ruleArray.join(';')};`;
+  return `RRULE:${ruleArray.join(';')}`;
 }
 
 export function parseMonthly(inputOptions) {
@@ -147,10 +149,26 @@ export function parseMonthly(inputOptions) {
   stringArray.push(intervalString);
 
   stringArray.push('on the');
-  let onThe;
+  let onThe = '';
   if (dayArray.length === 0) {
-    const monthDay = moment(startDate).format('D');
-    onThe = `${monthDay}${ords(parseInt(monthDay, 10))} day of the month`;
+    // use the negative offset for the BYMONTHDAY if startDate is 28 or above
+    const startDateObj = moment(startDate);
+    const monthDay = startDateObj.format('D');
+    const startDOM = startDateObj.date();
+    const lastDOM = moment()
+      .add('months', 1)
+      .date(0)
+      .date();
+    const isRecalculationNeeded = [31, 30, 29].includes(startDOM) && lastDOM - startDOM <= 2;
+    if (isRecalculationNeeded) {
+      const byMonthDay = Math.abs(parseInt(startDOM - lastDOM - 1));
+      if (byMonthDay !== 1) {
+        onThe += `${byMonthDay}${ords(parseInt(byMonthDay, 10))} to `;
+      }
+      onThe += 'last day of the month';
+    } else {
+      onThe = `${monthDay}${ords(parseInt(monthDay, 10))} day of the month`;
+    }
   } else {
     const setPos = getSetPos(startDate, dayArray);
     const ord = setPos === -1 ? 'last' : `${setPos}${ords(parseInt(setPos, 10))}`;
