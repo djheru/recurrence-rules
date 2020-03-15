@@ -40,7 +40,7 @@ export function parseDaily(inputOptions) {
 
   stringArray.push(endDateString(endDate, count));
 
-  const toString = stringArray.join(' ');
+  const toString = stringArray.join(' ').trim();
   const rrule = dailyRRule(options);
   return {
     toString,
@@ -97,7 +97,7 @@ export function parseWeekly(inputOptions) {
 
   stringArray.push(endDateString(endDate, count));
 
-  const toString = stringArray.join(' ');
+  const toString = stringArray.join(' ').trim();
   const rrule = weeklyRRule(options);
   return {
     toString,
@@ -185,7 +185,7 @@ export function parseMonthly(inputOptions) {
 
   stringArray.push(endDateString(endDate, count));
 
-  const toString = stringArray.join(' ');
+  const toString = stringArray.join(' ').trim();
   const rrule = monthlyRRule(options);
 
   return {
@@ -243,7 +243,7 @@ export function parseYearly(inputOptions) {
 
   stringArray.push(endDateString(endDate, count));
 
-  const toString = stringArray.join(' ');
+  const toString = stringArray.join(' ').trim();
   const rrule = yearlyRRule(options);
   return {
     toString,
