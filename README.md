@@ -124,6 +124,28 @@ const cases = {
       startDate: '2017-10-30',
       endDate: '2018-09-10',
     },
+    {
+      //
+      repeatType: repeatTypes.MONTHLY,
+      repeatByType: repeatByTypes.DOM,
+      endType: endTypes.DATE,
+      interval: 1,
+      dayArray: [],
+      count: 0,
+      startDate: '2018-10-30',
+      endDate: '2022-09-10',
+    },
+    {
+      //
+      repeatType: repeatTypes.MONTHLY,
+      repeatByType: repeatByTypes.DOM,
+      endType: endTypes.DATE,
+      interval: 1,
+      dayArray: [],
+      count: 0,
+      startDate: '2018-10-31',
+      endDate: '2022-11-10',
+    },
   ],
   parseYearly: [
     {
@@ -180,6 +202,7 @@ const main = () => {
 };
 
 main();
+
 ```
 
 # Results
@@ -212,34 +235,43 @@ Weekly Recurrence
   }
 ]
 Monthly Recurrence
+Deprecation warning: moment().add(period, number) is deprecated. Please use moment().add(number, period). See http://momentjs.com/guides/#/warnings/add-inverted-param/ for more info.
 [
   {
     toString: 'Every month on the 19th day of the month starting 10/19/2017 ',
-    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYMONTHDAY=19;'
+    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYMONTHDAY=19'
   },
   {
     toString: 'Every 3 months on the 10th day of the month starting 10/10/2017 ',
-    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=3;BYMONTHDAY=10;'
+    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=3;BYMONTHDAY=10'
   },
   {
     toString: 'Every month on the 3rd Sunday Monday and Thursday of the month starting 10/19/2017 ',
-    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=3SU,3MO,3TH;'
+    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=3SU,3MO,3TH'
   },
   {
     toString: 'Every 2 months on the last Sunday Monday and Thursday of the month starting 10/29/2017 ',
-    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=2;BYDAY=-1SU,-1MO,-1TH;'
+    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=2;BYDAY=-1SU,-1MO,-1TH'
   },
   {
     toString: 'Every month on the 19th day of the month starting 10/19/2018 and ending after 10 occurrences.',
-    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;COUNT=10;BYMONTHDAY=19;'
+    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;COUNT=10;BYMONTHDAY=19'
   },
   {
     toString: 'Every month on the 3rd Sunday Monday and Thursday of the month starting 10/19/2017 and ending on 09/10/2018',
-    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=3SU,3MO,3TH;'
+    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=3SU,3MO,3TH'
   },
   {
     toString: 'Every month on the last Friday of the month starting 10/30/2017 and ending on 09/10/2018',
-    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=-1FR;'
+    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=-1FR'
+  },
+  {
+    toString: 'Every month on the 2nd to last day of the month starting 10/30/2018 and ending on 09/10/2022',
+    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYMONTHDAY=-2'
+  },
+  {
+    toString: 'Every month on the last day of the month starting 10/31/2018 and ending on 11/10/2022',
+    rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYMONTHDAY=-1'
   }
 ]
 Yearly Recurrence
