@@ -39,14 +39,14 @@ export const endTypes = { NEVER: 'never', COUNT: 'count', DATE: 'date' };
 
 export function parseVariations(options) {
   let { count, dayArray, endDate, endType, interval, repeatByType, repeatType, startDate } = { ...options };
-  if ([repeatTypes.MONTHLY, repeatTypes.WEEKLY].includes(repeatType)) {
+  if ([repeatTypes.MONTHLY.toLowerCase(), repeatTypes.WEEKLY.toLowerCase()].includes(repeatType.toLowerCase())) {
     if (repeatByType === repeatByTypes.DOM) {
       dayArray = [];
     }
   }
-  if (endType === endTypes.COUNT) {
+  if (endType.toLowerCase() === endTypes.COUNT.toLowerCase()) {
     endDate = '';
-  } else if (endType === endTypes.DATE) {
+  } else if (endType.toLowerCase() === endTypes.DATE.toLowerCase()) {
     count = 0;
   } else {
     endDate = '';
