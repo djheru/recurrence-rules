@@ -75,25 +75,30 @@ export function parseWeekly(inputOptions) {
   const period = 'week';
   const options = { ...defaultOptions, ...inputOptions };
   const { interval, startDate, endDate, count, dayArray } = options;
-  let stringArray = ['Every'];
-
-  const intervalString = !!interval && parseInt(interval, 10) > 1 ? `${interval} ${period}s` : period;
-  stringArray.push(intervalString);
-
-  if (dayArray.length > 0) {
-    stringArray.push('on');
-    if (dayArray.length > 1) {
-      const days = dayArray.map(day => weekDays[day]);
-      days.splice(-1, 0, 'and');
-      stringArray.push(days.join(' '));
-    } else {
-      const day = dayArray[0];
-      stringArray.push(weekDays[day]);
-    }
-  }
-
+  let stringArray = [];
   const startString = moment(startDate).format('MM/DD/YYYY');
-  stringArray.push(`starting ${startString}`);
+
+  if (count !== 1) {
+    stringArray.push('Every');
+
+    const intervalString = !!interval && parseInt(interval, 10) > 1 ? `${interval} ${period}s` : period;
+    stringArray.push(intervalString);
+
+    if (dayArray.length > 0) {
+      stringArray.push('on');
+      if (dayArray.length > 1) {
+        const days = dayArray.map(day => weekDays[day]);
+        days.splice(-1, 0, 'and');
+        stringArray.push(days.join(' '));
+      } else {
+        const day = dayArray[0];
+        stringArray.push(weekDays[day]);
+      }
+    }
+    stringArray.push(`starting ${startString}`);
+  } else {
+    stringArray.push(`Scheduled on ${startString}`);
+  }
 
   stringArray.push(endDateString(endDate, count));
 
@@ -143,45 +148,48 @@ export function parseMonthly(inputOptions) {
   const period = 'month';
   const options = { ...defaultOptions, ...inputOptions };
   const { interval, startDate, endDate, count, dayArray } = options;
-  let stringArray = ['Every'];
-
-  const intervalString = !!interval && parseInt(interval, 10) > 1 ? `${interval} ${period}s` : period;
-  stringArray.push(intervalString);
-
-  stringArray.push('on the');
-  let onThe = '';
-  if (dayArray.length === 0) {
-    // use the negative offset for the BYMONTHDAY if startDate is 28 or above
-    const startDateObj = moment(startDate);
-    const monthDay = startDateObj.format('D');
-    const startDOM = startDateObj.date();
-    const lastDOM = moment()
-      .add(1, 'months')
-      .date(0)
-      .date();
-    const isRecalculationNeeded = [31, 30, 29].includes(startDOM) && lastDOM - startDOM <= 2;
-    if (isRecalculationNeeded) {
-      const byMonthDay = Math.abs(parseInt(startDOM - lastDOM - 1));
-      if (byMonthDay !== 1) {
-        onThe += `${byMonthDay}${ords(parseInt(byMonthDay, 10))} to `;
-      }
-      onThe += 'last day of the month';
-    } else {
-      onThe = `${monthDay}${ords(parseInt(monthDay, 10))} day of the month`;
-    }
-  } else {
-    const setPos = getSetPos(startDate, dayArray);
-    const ord = setPos === -1 ? 'last' : `${setPos}${ords(parseInt(setPos, 10))}`;
-    const days = dayArray.map(day => weekDays[day]);
-    if (dayArray.length > 1) {
-      days.splice(-1, 0, 'and');
-    }
-    onThe = `${ord} ${days.join(' ')} of the month`;
-  }
-  stringArray.push(onThe);
-
+  let stringArray = [];
   const startString = moment(startDate).format('MM/DD/YYYY');
-  stringArray.push(`starting ${startString}`);
+
+  if (count !== 1) {
+    stringArray.push('Every');
+    const intervalString = !!interval && parseInt(interval, 10) > 1 ? `${interval} ${period}s` : period;
+    stringArray.push(intervalString);
+    stringArray.push('on the');
+    let onThe = '';
+    if (dayArray.length === 0) {
+      // use the negative offset for the BYMONTHDAY if startDate is 28 or above
+      const startDateObj = moment(startDate);
+      const monthDay = startDateObj.format('D');
+      const startDOM = startDateObj.date();
+      const lastDOM = moment()
+        .add(1, 'months')
+        .date(0)
+        .date();
+      const isRecalculationNeeded = [31, 30, 29].includes(startDOM) && lastDOM - startDOM <= 2;
+      if (isRecalculationNeeded) {
+        const byMonthDay = Math.abs(parseInt(startDOM - lastDOM - 1));
+        if (byMonthDay !== 1) {
+          onThe += `${byMonthDay}${ords(parseInt(byMonthDay, 10))} to `;
+        }
+        onThe += 'last day of the month';
+      } else {
+        onThe = `${monthDay}${ords(parseInt(monthDay, 10))} day of the month`;
+      }
+    } else {
+      const setPos = getSetPos(startDate, dayArray);
+      const ord = setPos === -1 ? 'last' : `${setPos}${ords(parseInt(setPos, 10))}`;
+      const days = dayArray.map(day => weekDays[day]);
+      if (dayArray.length > 1) {
+        days.splice(-1, 0, 'and');
+      }
+      onThe = `${ord} ${days.join(' ')} of the month`;
+    }
+    stringArray.push(onThe);
+    stringArray.push(`starting ${startString}`);
+  } else {
+    stringArray.push(`Scheduled on ${startString}`);
+  }
 
   stringArray.push(endDateString(endDate, count));
 
