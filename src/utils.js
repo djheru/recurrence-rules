@@ -77,6 +77,8 @@ export function endDateString(endDate, count) {
     stringValue = `and ending on ${endString}`;
   } else if (!!count && parseInt(count, 10) > 1) {
     stringValue = `and ending after ${count} occurrences.`;
+  } else if (!!count && parseInt(count, 10) === 1) {
+    stringValue = `and occurring once.`;
   }
   return stringValue;
 }
