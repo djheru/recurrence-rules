@@ -218,28 +218,32 @@ export function parseYearly(inputOptions) {
   const period = 'year';
   const options = { ...defaultOptions, ...inputOptions };
   const { interval, startDate, endDate, count, dayArray } = options;
-  let stringArray = ['Every'];
-
-  const intervalString = !!interval && parseInt(interval, 10) > 1 ? `${interval} ${period}s` : period;
-  stringArray.push(intervalString);
-
-  stringArray.push('on the');
-  let onThe;
-  const theMonth = moment(startDate).format('MMM');
-  if (dayArray.length === 0) {
-    const monthDay = moment(startDate).format('D');
-    onThe = `${monthDay}${ords(parseInt(monthDay, 10))} day of ${theMonth}`;
-  } else {
-    const setPos = getSetPos(startDate, dayArray);
-    const ord = setPos === -1 ? 'last' : `${setPos}${ords(parseInt(setPos, 10))}`;
-    const days = dayArray.map(day => weekDays[day]);
-    days.splice(-1, 0, 'and');
-    onThe = `${ord} ${days.join(' ')} of ${theMonth}`;
-  }
-  stringArray.push(onThe);
-
+  let stringArray = [];
   const startString = moment(startDate).format('MM/DD/YYYY');
-  stringArray.push(`starting ${startString}`);
+
+  if (count !== 1) {
+    stringArray.push('Every');
+    const intervalString = !!interval && parseInt(interval, 10) > 1 ? `${interval} ${period}s` : period;
+    stringArray.push(intervalString);
+
+    stringArray.push('on the');
+    let onThe;
+    const theMonth = moment(startDate).format('MMM');
+    if (dayArray.length === 0) {
+      const monthDay = moment(startDate).format('D');
+      onThe = `${monthDay}${ords(parseInt(monthDay, 10))} day of ${theMonth}`;
+    } else {
+      const setPos = getSetPos(startDate, dayArray);
+      const ord = setPos === -1 ? 'last' : `${setPos}${ords(parseInt(setPos, 10))}`;
+      const days = dayArray.map(day => weekDays[day]);
+      days.splice(-1, 0, 'and');
+      onThe = `${ord} ${days.join(' ')} of ${theMonth}`;
+    }
+    stringArray.push(onThe);
+    stringArray.push(`starting ${startString}`);
+  } else {
+    stringArray.push(`Scheduled on ${startString}`);
+  }
 
   stringArray.push(endDateString(endDate, count));
 
