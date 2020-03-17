@@ -30,13 +30,17 @@ export function parseDaily(inputOptions) {
   const period = 'day';
   const options = { ...defaultOptions, ...inputOptions };
   const { interval, startDate, endDate, count } = options;
-  let stringArray = ['Every'];
+  let stringArray = [];
+  if (count !== 1) {
+    stringArray.push('Every');
+    const intervalString = !!interval && parseInt(interval, 10) > 1 ? `${interval} ${period}s` : period;
+    stringArray.push(intervalString);
 
-  const intervalString = !!interval && parseInt(interval, 10) > 1 ? `${interval} ${period}s` : period;
-  stringArray.push(intervalString);
-
-  const startString = moment(startDate).format('MM/DD/YYYY');
-  stringArray.push(`starting ${startString}`);
+    const startString = moment(startDate).format('MM/DD/YYYY');
+    stringArray.push(`starting ${startString}`);
+  } else {
+    stringArray.push(`Scheduled on ${startString}`);
+  }
 
   stringArray.push(endDateString(endDate, count));
 
