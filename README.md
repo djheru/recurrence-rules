@@ -211,84 +211,84 @@ main();
 Daily Recurrence
 [
   {
-    toString: 'Every day starting 10/19/2017 ',
+    toText: 'Every day starting 10/19/2017 ',
     rrule: 'RRULE:FREQ=DAILY;INTERVAL=1;'
   },
   {
-    toString: 'Every 3 days starting 10/19/2017 ',
+    toText: 'Every 3 days starting 10/19/2017 ',
     rrule: 'RRULE:FREQ=DAILY;INTERVAL=3;'
   }
 ]
 Weekly Recurrence
 [
   {
-    toString: 'Every week starting 10/19/2017 ',
+    toText: 'Every week starting 10/19/2017 ',
     rrule: 'RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=TH'
   },
   {
-    toString: 'Every 3 weeks starting 10/19/2017 ',
+    toText: 'Every 3 weeks starting 10/19/2017 ',
     rrule: 'RRULE:FREQ=WEEKLY;INTERVAL=3;BYDAY=TH'
   },
   {
-    toString: 'Every 2 weeks on Sunday Monday and Thursday starting 10/19/2017 ',
+    toText: 'Every 2 weeks on Sunday Monday and Thursday starting 10/19/2017 ',
     rrule: 'RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=SU,MO,TH'
   }
 ]
 Monthly Recurrence
 [
   {
-    toString: 'Every month on the 19th day of the month starting 10/19/2017 ',
+    toText: 'Every month on the 19th day of the month starting 10/19/2017 ',
     rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYMONTHDAY=19'
   },
   {
-    toString: 'Every 3 months on the 10th day of the month starting 10/10/2017 ',
+    toText: 'Every 3 months on the 10th day of the month starting 10/10/2017 ',
     rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=3;BYMONTHDAY=10'
   },
   {
-    toString: 'Every month on the 3rd Sunday Monday and Thursday of the month starting 10/19/2017 ',
+    toText: 'Every month on the 3rd Sunday Monday and Thursday of the month starting 10/19/2017 ',
     rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=3SU,3MO,3TH'
   },
   {
-    toString: 'Every 2 months on the last Sunday Monday and Thursday of the month starting 10/29/2017 ',
+    toText: 'Every 2 months on the last Sunday Monday and Thursday of the month starting 10/29/2017 ',
     rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=2;BYDAY=-1SU,-1MO,-1TH'
   },
   {
-    toString: 'Every month on the 19th day of the month starting 10/19/2018 and ending after 10 occurrences.',
+    toText: 'Every month on the 19th day of the month starting 10/19/2018 and ending after 10 occurrences.',
     rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;COUNT=10;BYMONTHDAY=19'
   },
   {
-    toString: 'Every month on the 3rd Sunday Monday and Thursday of the month starting 10/19/2017 and ending on 09/10/2018',
+    toText: 'Every month on the 3rd Sunday Monday and Thursday of the month starting 10/19/2017 and ending on 09/10/2018',
     rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=3SU,3MO,3TH'
   },
   {
-    toString: 'Every month on the last Friday of the month starting 10/30/2017 and ending on 09/10/2018',
+    toText: 'Every month on the last Friday of the month starting 10/30/2017 and ending on 09/10/2018',
     rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=-1FR'
   },
   {
-    toString: 'Every month on the 2nd to last day of the month starting 10/30/2018 and ending on 09/10/2022',
+    toText: 'Every month on the 2nd to last day of the month starting 10/30/2018 and ending on 09/10/2022',
     rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYMONTHDAY=-2'
   },
   {
-    toString: 'Every month on the last day of the month starting 10/31/2018 and ending on 11/10/2022',
+    toText: 'Every month on the last day of the month starting 10/31/2018 and ending on 11/10/2022',
     rrule: 'RRULE:FREQ=MONTHLY;INTERVAL=1;BYMONTHDAY=-1'
   }
 ]
 Yearly Recurrence
 [
   {
-    toString: 'Every year on the 19th day of Oct starting 10/19/2017 ',
+    toText: 'Every year on the 19th day of Oct starting 10/19/2017 ',
     rrule: 'RRULE:FREQ=YEARLY;INTERVAL=1'
   },
   {
-    toString: 'Every 2 years on the 19th day of Oct starting 10/19/2017 ',
+    toText: 'Every 2 years on the 19th day of Oct starting 10/19/2017 ',
     rrule: 'RRULE:FREQ=YEARLY;INTERVAL=2'
   },
   {
-    toString: 'Every 2 years on the 3rd Sunday Monday and Thursday of Oct starting 10/19/2017 ',
+    toText: 'Every 2 years on the 3rd Sunday Monday and Thursday of Oct starting 10/19/2017 ',
     rrule: 'RRULE:FREQ=YEARLY;INTERVAL=2;BYDAY=3SU,3MO,3TH'
   },
   {
-    toString: 'Every 2 years on the last Sunday Monday and Thursday of Oct starting 10/29/2017 ',
+    toText: 'Every 2 years on the last Sunday Monday and Thursday of Oct starting 10/29/2017 ',
     rrule: 'RRULE:FREQ=YEARLY;INTERVAL=2;BYDAY=-1SU,-1MO,-1TH'
   }
 ]
